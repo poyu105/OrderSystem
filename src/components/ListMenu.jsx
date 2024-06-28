@@ -1,7 +1,7 @@
 // src/ListMenu.jsx
 import React from 'react';
 
-function ListMenu({ items, onEdit, onDelete }) {
+function ListMenu({ items, onEdit, onDelete, userMode }) {
   // 首先按照 type 属性分组菜单项
   const groupedItems = {};
   items.forEach(item => {
@@ -20,8 +20,11 @@ function ListMenu({ items, onEdit, onDelete }) {
             {groupedItems[type].map(menuItem => (
               <li key={menuItem.id}>
                 {menuItem.name} - ${menuItem.price}
-                <button onClick={() => onEdit(menuItem.id)}>編輯</button>
-                <button onClick={() => onDelete(menuItem.id)}>刪除</button>
+                {userMode === 'Admin' && (
+                  <>
+                    <button onClick={() => onEdit(menuItem.id)}>編輯</button>
+                    <button onClick={() => onDelete(menuItem.id)}>刪除</button>
+                  </>)}
               </li>
             ))}
           </ul>
