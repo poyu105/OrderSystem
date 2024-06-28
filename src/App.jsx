@@ -6,11 +6,13 @@ import Orders from './pages/Orders';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <Footer />
       <Routes>
         {/* 重定向 /OrderSystem 到 /home */}
         <Route path="/OrderSystem" element={<Navigate to="/" replace />} />
@@ -22,6 +24,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
+
   );
 }
 
