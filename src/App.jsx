@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import OrderDetail from './pages/OrderDetail';
@@ -8,9 +8,15 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 function App() {
+
+  const [userMode, setMode] = useState('User');
+  const handleMode = ()=>{
+      setMode(prevMode => (prevMode === 'User' ? 'Admin' : 'User'));
+  }
+
   return (
     <Router>
-      <Navbar />
+      <Navbar userMode={userMode} handleMode={handleMode} />
       <Footer />
       <Routes>
         {/* 重定向 /OrderSystem 到 /home */}
