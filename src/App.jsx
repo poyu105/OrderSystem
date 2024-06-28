@@ -16,7 +16,6 @@ function App() {
   return (
     <Router>
       <Navbar userMode={userMode} handleMode={handleMode} />
-      <Footer />
       <Routes>
         {/* 重定向 /OrderSystem 到 /home */}
         <Route path="/OrderSystem" element={<Navigate to="/" replace />} />
@@ -25,6 +24,7 @@ function App() {
         <Route path="/orderdetail" element={<OrderDetail />} />
         <Route path="/orders" element={<Orders />} />
       </Routes>
+      <Footer />
     </Router>
 
   );
