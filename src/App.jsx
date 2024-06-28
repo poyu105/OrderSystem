@@ -21,7 +21,7 @@ function App() {
         {/* 重定向 /OrderSystem 到 /home */}
         <Route path="/OrderSystem" element={<Navigate to="/" replace />} />
       
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home userMode={userMode}/>} />
         <Route path="/orderdetail" element={<OrderDetail />} />
         <Route path="/orders" element={<Orders />} />
       </Routes>
