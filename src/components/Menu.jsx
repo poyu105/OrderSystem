@@ -8,7 +8,7 @@ const initialMenuItems = [
   { id: 3, name: 'Coke', price: 50, type: '飲料' },
 ];
 
-function Menu() {
+function Menu({userMode}) {
   const [menuItems, setMenuItems] = useState(initialMenuItems);
   const [newItem, setNewItem] = useState({ name: '', price: '', type: '' });
   const [editItemId, setEditItemId] = useState(null);
@@ -147,6 +147,7 @@ function Menu() {
 
       {/* 列出菜單项 */}
       <ListMenu
+        userMode={userMode}
         items={menuItems}
         onEdit={handleEditItem}
         onDelete={handleDeleteItem}
