@@ -21,7 +21,7 @@ function Footer() {
     };
 
     return (
-    <footer className="bg-black text-light w-100 text-center position-absolute">
+    <footer className="bg-black text-light w-100 text-center position-absolute mt-3">
     <div className="container my-3">
     <small className="lastModifiedDate text-center">Update: {lastModifiedDate}</small><br/>
     <small>&copy;2024 <a className="text-center link-opacity-75-hover link-light link-offset-2 link-offset-3-hover link-underline-opacity-75" href="https://poyu105.github.io/myweb" target="_blank">Poyu webDev.</a></small>
