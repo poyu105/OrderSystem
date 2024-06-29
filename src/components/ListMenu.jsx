@@ -15,7 +15,7 @@ function ListMenu({ items, onEdit, onDelete, userMode }) {
     <>
       {Object.keys(groupedItems).map(type => (
         <div key={type} className="row">
-          <h2 className='text-center'>{type}</h2>
+          <h2 className='text-center my-2'>{type}</h2>
           <hr/>
           {groupedItems[type].map(menuItem=>(
             <div key={menuItem.id} className='col-lg-4 col-md-6 col-8 mx-md-0 mx-auto'>
@@ -23,6 +23,7 @@ function ListMenu({ items, onEdit, onDelete, userMode }) {
                 <div className='card-body'>
                   <h3 className='card-title text-center'>{menuItem.name}</h3>
                   <div className='card-text'>
+                    <p className='text-secondary'>{menuItem.intro}</p>
                     <p>價格:{menuItem.price}</p>
                     <form className='d-sm-flex justify-content-center text-center'>
                       <div className='col-12 col-sm-6'>

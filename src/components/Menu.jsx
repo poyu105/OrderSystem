@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import ListMenu from './ListMenu';
 
 const initialMenuItems = [
-  { id: 1, name: 'Pizza', price: 100, type: '主食' },
-  { id: 2, name: 'Burger', price: 70, type: '主食' },
-  { id: 3, name: 'Coke', price: 50, type: '飲料' },
+  { id: 1, name: 'Pizza', intro:'我是PizzaIntro', price: 100, type: '主食' },
+  { id: 2, name: 'Burger', intro:'我是BurgerIntro', price: 70, type: '主食' },
+  { id: 3, name: 'Coke', intro:'我是CokeIntro',price: 50, type: '飲料' },
 ];
 
 function Menu({userMode}) {
   const [menuItems, setMenuItems] = useState(initialMenuItems);
-  const [newItem, setNewItem] = useState({ name: '', price: '', type: '' });
+  const [newItem, setNewItem] = useState({ name: '',intro:'', price: '', type: '' });
   const [editItemId, setEditItemId] = useState(null);
-  const [editItem, setEditItem] = useState({ name: '', price: '', type: '' });
+  const [editItem, setEditItem] = useState({ name: '',intro:'', price: '', type: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const clearMessage =()=>{
@@ -24,14 +24,14 @@ function Menu({userMode}) {
     e.preventDefault();
 
     // 判斷項目是否為空
-    if (!newItem.name || !newItem.price || !newItem.type) {
+    if (!newItem.name || !newItem.intro || !newItem.price || !newItem.type) {
       setError('所有項目皆為必填選項');
       return;
     }
 
     const id = menuItems.length ? menuItems[menuItems.length - 1].id + 1 : 1;
     setMenuItems([...menuItems, { ...newItem, id }]);
-    setNewItem({ name: '', price: '', type: '' });
+    setNewItem({ name: '', intro:'', price: '', type: '' });
     setError(''); // 清除错误
     setSuccess('已成功添加');
   };
@@ -39,23 +39,23 @@ function Menu({userMode}) {
   const handleEditItem = (id) => {
     const item = menuItems.find(item => item.id === id);
     setEditItemId(id);
-    setEditItem({ name: item.name, price: item.price, type: item.type });
+    setEditItem({ name: item.name, intro: item.intro, price: item.price, type: item.type });
   };
 
   const handleSaveEditItem = (e) => {
     e.preventDefault();
 
     // 验证字段是否为空
-    if (!editItem.name || !editItem.price || !editItem.type) {
+    if (!editItem.name || !editItem.intro || !editItem.price || !editItem.type) {
       setError('所有字段均为必填项。');
       return;
     }
 
     setMenuItems(menuItems.map(item =>
-      item.id === editItemId ? { ...item, name: editItem.name, price: editItem.price, type: editItem.type } : item
+      item.id === editItemId ? { ...item, name: editItem.name, intro: editItem.intro, price: editItem.price, type: editItem.type } : item
     ));
     setEditItemId(null);
-    setEditItem({ name: '', price: '', type: '' });
+    setEditItem({ name: '',intro:'', price: '', type: '' });
     setError(''); // 清除错误
   };
 
@@ -95,6 +95,13 @@ function Menu({userMode}) {
                   onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
                 />
                 <input
+                  type="text"
+                  className="form-control mb-2"
+                  placeholder="介紹"
+                  value={newItem.intro}
+                  onChange={(e) => setNewItem({ ...newItem, intro: e.target.value })}
+                />
+                <input
                   type="number"
                   className="form-control mb-2"
                   placeholder="價格"
@@ -127,6 +134,12 @@ function Menu({userMode}) {
             placeholder="菜名"
             value={editItem.name}
             onChange={(e) => setEditItem({ ...editItem, name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="介紹"
+            value={editItem.intro}
+            onChange={(e) => setEditItem({ ...editItem, intro: e.target.value })}
           />
           <input
             type="number"
