@@ -90,7 +90,7 @@ function Menu({userMode}) {
                 <input
                   type="text"
                   className="form-control mb-2"
-                  placeholder="菜名"
+                  placeholder="名稱"
                   value={newItem.name}
                   onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
                 />
