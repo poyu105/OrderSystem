@@ -1,12 +1,9 @@
 // src/Menu.jsx
 import { useEffect, useState } from 'react';
 import ListMenu from './ListMenu';
+import MenuItems from '../data/MenuItems.json';
 
-const initialMenuItems = [
-  { id: 1, name: 'Pizza', intro:'我是PizzaIntro', price: 100, type: '主食' },
-  { id: 2, name: 'Burger', intro:'我是BurgerIntro', price: 70, type: '主食' },
-  { id: 3, name: 'Coke', intro:'我是CokeIntro',price: 50, type: '飲料' },
-];
+const initialMenuItems = MenuItems;
 
 function Menu({userMode}) {
   const [menuItems, setMenuItems] = useState(initialMenuItems);
