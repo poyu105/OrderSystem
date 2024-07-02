@@ -37,6 +37,8 @@ function Menu({userMode}) {
   };
 
   const handleEditItem = (id) => {
+    setEditItemId(null);
+    setEditItem({ name: '',intro:'', price: '', type: '' });
     const item = menuItems.find(item => item.id === id);
     setEditItemId(id);
     setEditItem({ name: item.name, intro: item.intro, price: item.price, type: item.type });
@@ -54,9 +56,8 @@ function Menu({userMode}) {
     setMenuItems(menuItems.map(item =>
       item.id === editItemId ? { ...item, name: editItem.name, intro: editItem.intro, price: editItem.price, type: editItem.type } : item
     ));
-    setEditItemId(null);
-    setEditItem({ name: '',intro:'', price: '', type: '' });
     setError(''); // 清除错误
+    setSuccess('已成功修改');
   };
 
   const handleDeleteItem = (id) => {
@@ -65,11 +66,14 @@ function Menu({userMode}) {
 
   useEffect(()=>{
     const handleModalHide=()=>clearMessage();
-    const modalElement = document.getElementById('addNewItem');
-    modalElement.addEventListener('hidden.bs.modal', handleModalHide);
+    const addModalElement = document.getElementById('addNewItem');
+    const editModalElement = document.getElementById('editItem');
+    addModalElement.addEventListener('hidden.bs.modal', handleModalHide);
+    editModalElement.addEventListener('hidden.bs.modal', handleModalHide);
 
     return () => {
-      modalElement.removeEventListener('hidden.bs.modal', handleModalHide);
+      addModalElement.removeEventListener('hidden.bs.modal', handleModalHide);
+      editModalElement.removeEventListener('hidden.bs.modal', handleModalHide);
     };
   }, []);
 
@@ -133,7 +137,7 @@ function Menu({userMode}) {
               <h5 className='modal-title'>編輯菜單資訊</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form onSubmit={handleEditItem}>
+            <form onSubmit={handleSaveEditItem}>
               <div className='modal-body'>
                 {error && <div className="alert alert-danger">{error}</div>}
                 {success && <div className='alert alert-success'>{success}</div>}
