@@ -45,9 +45,9 @@ function Menu({userMode}) {
   const handleSaveEditItem = (e) => {
     e.preventDefault();
 
-    // 验证字段是否为空
+    // 判斷項目是否為空
     if (!editItem.name || !editItem.intro || !editItem.price || !editItem.type) {
-      setError('所有字段均为必填项。');
+      setError('所有項目皆為必填選項');
       return;
     }
 
@@ -75,7 +75,7 @@ function Menu({userMode}) {
 
   return (
     <>
-      {/* 新增菜單的模态框 */}
+      {/* 新增菜單Modal */}
       <div id='addNewItem' className='modal fade' tabIndex={-1}>
         <div className='modal-dialog modal-dialog-centered'>
           <div className='modal-content'>
@@ -125,38 +125,55 @@ function Menu({userMode}) {
         </div>
       </div>
 
-      {/* 编辑菜單的表单 */}
-      {editItemId && (
-        <form onSubmit={handleSaveEditItem}>
-          {error && <div className="alert alert-danger">{error}</div>}
-          <input
-            type="text"
-            placeholder="菜名"
-            value={editItem.name}
-            onChange={(e) => setEditItem({ ...editItem, name: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="介紹"
-            value={editItem.intro}
-            onChange={(e) => setEditItem({ ...editItem, intro: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="價格"
-            value={editItem.price}
-            onChange={(e) => setEditItem({ ...editItem, price: parseFloat(e.target.value) })}
-          />
-          <input
-            type="text"
-            placeholder="類別"
-            value={editItem.type}
-            onChange={(e) => setEditItem({ ...editItem, type: e.target.value })}
-          />
-          <button type="submit">保存</button>
-          <button type="button" onClick={() => setEditItemId(null)}>取消</button>
-        </form>
-      )}
+      {/* 编辑菜單Modal */}
+      <div id='editItem' className='modal fade' tabIndex={-1}>
+        <div className='modal-dialog modal-dialog-centered'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h5 className='modal-title'>編輯菜單資訊</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form onSubmit={handleEditItem}>
+              <div className='modal-body'>
+                {error && <div className="alert alert-danger">{error}</div>}
+                {success && <div className='alert alert-success'>{success}</div>}
+                <input
+                  type="text"
+                  className="form-control mb-2"
+                  placeholder="名稱"
+                  value={editItem.name}
+                  onChange={(e) => setEditItem({ ...editItem, name: e.target.value })}
+                />
+                <input
+                  type="text"
+                  className="form-control mb-2"
+                  placeholder="介紹"
+                  value={editItem.intro}
+                  onChange={(e) => setEditItem({ ...editItem, intro: e.target.value })}
+                />
+                <input
+                  type="number"
+                  className="form-control mb-2"
+                  placeholder="價格"
+                  value={editItem.price}
+                  onChange={(e) => setEditItem({ ...editItem, price: parseFloat(e.target.value) })}
+                />
+                <input
+                  type="text"
+                  className="form-control mb-2"
+                  placeholder="類別"
+                  value={editItem.type}
+                  onChange={(e) => setEditItem({ ...editItem, type: e.target.value })}
+                />
+              </div>
+              <div className='modal-footer'>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" className="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
       {/* 列出菜單项 */}
       <ListMenu
