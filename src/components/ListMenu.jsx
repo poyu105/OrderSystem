@@ -45,8 +45,8 @@ function ListMenu({ items, onEdit, onDelete, userMode }) {
                     </form>
                     {userMode === 'Admin' && (
                       <div className='container mt-1 d-flex justify-content-center'>
-                        <button className='me-1 btn btn-warning' onClick={() => onEdit(menuItem.id)}>編輯</button>
-                        <button className='me-1 btn btn-danger' onClick={() => onDelete(menuItem.id)}>刪除</button>
+                        <button className='me-1 btn btn-warning' onClick={() => onEdit(menuItem.id)} data-bs-toggle='modal' data-bs-target='#editItem'>編輯</button>
+                        <button className='me-1 btn btn-danger' onClick={() => onDelete(menuItem.id)} >刪除</button>
                       </div>)}
                   </div>
                 </div>
