@@ -21,8 +21,8 @@ function App() {
         <Route path="/OrderSystem" element={<Navigate to="/" replace />} />
       
         <Route path="/" element={<Home userMode={userMode}/>} />
-        <Route path="/orderdetail" element={<OrderDetail />} />
-        <Route path="/orders" element={<Orders />} />
+        <Route path="/OrderDetail" element={<OrderDetail />} />
+        <Route path="/Orders" element={<Orders />} />
       </Routes>
       <Footer />
     </Router>
